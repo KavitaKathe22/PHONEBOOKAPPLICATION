@@ -9,34 +9,99 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
-@Table(name="CONTACT_DTLS")
+@Table(name = "CONTACT_DTLS")
 public class Contact {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="CONTACT_ID")
+	@Column(name = "CONTACT_ID")
 	private Integer contactId;
-	
-	@Column(name="CONTACT_Name")
-    private String contactName;
-	
-	@Column(name="CONTACT_NUMBER")
-    private Long contactNumber;
-	
-	@Column(name="CONTACT_EMAIL")
-    private String contactEmail;
-	
-	@Column(name="ACTIVE_SW")
-    private Character activeSw;
-	
-	@Column(name="CREATE_DATE")
-    private LocalDate createDate;
-	
-	@Column(name="UPDATE_DATE")
-    private LocalDate updatedDate;
-	
-	
-	
+
+	@Column(name = "CONTACT_Name")
+	private String contactName;
+
+	@Column(name = "CONTACT_NUMBER")
+	private Long contactNumber;
+
+	@Column(name = "CONTACT_EMAIL")
+	private String contactEmail;
+
+	@Column(name = "ACTIVE_SW")
+	private Character activeSw;
+
+	@Column(name = "CREATE_DATE", updatable = false)
+	@CreationTimestamp
+	private LocalDate createDate;
+
+	@Column(name = "UPDATE_DATE", insertable = true)
+	@UpdateTimestamp
+	private LocalDate updatedDate;
+
+	public Integer getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public Long getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(Long contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
+	public Character getActiveSw() {
+		return activeSw;
+	}
+
+	public void setActiveSw(Character activeSw) {
+		this.activeSw = activeSw;
+	}
+
+	public LocalDate getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDate getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(LocalDate updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [contactId=" + contactId + ", contactName=" + contactName + ", contactNumber=" + contactNumber
+				+ ", contactEmail=" + contactEmail + ", activeSw=" + activeSw + ", createDate=" + createDate
+				+ ", updatedDate=" + updatedDate + "]";
+	}
+
 }
